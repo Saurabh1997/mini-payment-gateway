@@ -32,7 +32,7 @@ export class ChargeService {
             chargeData.amount,
             chargeData.email
         );
-
+        console.log(" factors ", factors)
         // Determine if transaction should be blocked
         const shouldBlock = this.fraudService.shouldBlockTransaction(riskScore);
 
@@ -54,23 +54,24 @@ export class ChargeService {
         }
 
         // Generate explanation using LLM
-        const explanation = this.llmProvider
-            ? await this.llmProvider.generateRiskSummary({
-                riskScore,
-                factors,
-                amount: chargeData.amount,
-                email: chargeData.email,
-                provider,
-                status
-            })
-            : this.llmService.generateExplanation(
-                riskScore,
-                factors,
-                chargeData.amount,
-                chargeData.email,
-                provider,
-                status
-            );
+        const explanation = "risk"
+        // const explanation = this.llmProvider
+        //     ? await this.llmProvider.generateRiskSummary({
+        //         riskScore,
+        //         factors,
+        //         amount: chargeData.amount,
+        //         email: chargeData.email,
+        //         provider,
+        //         status
+        //     })
+        //     : this.llmService.generateExplanation(
+        //         riskScore,
+        //         factors,
+        //         chargeData.amount,
+        //         chargeData.email,
+        //         provider,
+        //         status
+        //     );
 
         // Create response
         const transactionId = uuidv4();
@@ -111,13 +112,13 @@ export class ChargeService {
         // In a real implementation, this would call actual payment processor APIs
 
         // For demo purposes, fail payments with very high amounts or suspicious emails
-        if (chargeData.amount > 50000) {
-            return Math.random() > 0.3; // 70% success rate for very high amounts
-        }
+        // if (chargeData.amount > 50000) {
+        //     return Math.random() > 0.3; // 70% success rate for very high amounts
+        // }
 
-        if (chargeData.email.includes('test')) {
-            return Math.random() > 0.5; // 50% success rate for test emails
-        }
+        // if (chargeData.email.includes('test')) {
+        //     return Math.random() > 0.5; // 50% success rate for test emails
+        // }
 
         return Math.random() > 0.1; // 90% success rate for normal transactions
     }

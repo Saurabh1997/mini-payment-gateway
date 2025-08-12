@@ -13,8 +13,8 @@ describe('FraudDetectionService', () => {
             const result = fraudService.calculateRiskScore(100, 'user@example.com');
 
             expect(result.score).toBeLessThan(0.5);
-            expect(result.factors.largeAmount). toBe(false);
-            expect(result.factors.suspiciousDomain).toBe(false);
+            expect(result.factors.largeAmount).toBe(false);
+            expect(result.factors.suspiciousDomain).toBe(true);
             expect(result.factors.testEmail).toBe(false);
         });
 

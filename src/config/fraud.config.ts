@@ -19,7 +19,7 @@ export interface FraudConfig {
 
 export const fraudConfig: FraudConfig = {
     largeAmountThreshold: 10000,
-    suspiciousDomains: ['.ru', '.cn', '.test.com', '.example.com'],
+    suspiciousDomains: ['.ru', '.cn', 'test.com', 'example.com'],
     testEmailIndicators: ['test', 'admin', 'root'],
     weights: {
         largeAmount: 0.4,
